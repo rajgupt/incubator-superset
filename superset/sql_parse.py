@@ -69,7 +69,7 @@ class ParsedQuery:
 
     @property
     def limit(self) -> Optional[int]:
-        return self._limit
+         return self._limit
 
     def is_select(self) -> bool:
         return self._parsed[0].get_type() == "SELECT"

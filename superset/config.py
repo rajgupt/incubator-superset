@@ -114,7 +114,7 @@ SUPERSET_WEBSERVER_PORT = 8088
 # [load balancer / proxy / envoy / kong / ...] timeout settings.
 # You should also make sure to configure your WSGI server
 # (gunicorn, nginx, apache, ...) timeout setting to be <= to this setting
-SUPERSET_WEBSERVER_TIMEOUT = 60
+SUPERSET_WEBSERVER_TIMEOUT = 300
 
 SUPERSET_DASHBOARD_POSITION_DATA_LIMIT = 65535
 CUSTOM_SECURITY_MANAGER = None
@@ -168,10 +168,10 @@ PROXY_FIX_CONFIG = {"x_for": 1, "x_proto": 1, "x_host": 1, "x_port": 1, "x_prefi
 # GLOBALS FOR APP Builder
 # ------------------------------
 # Uncomment to setup Your App name
-APP_NAME = "Superset"
+APP_NAME = "ClaimsExplorer"
 
 # Uncomment to setup an App icon
-APP_ICON = "/static/assets/images/superset-logo@2x.png"
+APP_ICON = "/static/assets/images/Optum.png"
 APP_ICON_WIDTH = 126
 
 # Uncomment to specify where clicking the logo would take the user

@@ -46,7 +46,7 @@ RUN mkdir -p /app/superset/assets
 COPY ./superset/assets/package* /app/superset/assets/
 RUN cd /app/superset/assets \
         && npm ci
-
+COPY .npmrc /app/superset/assets
 # Next, copy in the rest and let webpack do its thing
 COPY ./superset/assets /app/superset/assets
 # This is BY FAR the most expensive step (thanks Terser!)
