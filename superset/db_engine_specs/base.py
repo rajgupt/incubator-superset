@@ -316,15 +316,22 @@ class BaseEngineSpec:  # pylint: disable=too-many-public-methods
         # TODO: Fix circular import caused by importing Database
         if cls.limit_method == LimitMethod.WRAP_SQL:
             sql = sql.strip("\t\n ;")
-            qry = (
-                select("*")
-                .select_from(TextAsFrom(text(sql), ["*"]).alias("inner_qry"))
-                .limit(limit)
-            )
+            if database.backend == 'db2':
+                qry = (
+                    select("*")
+                    .select_from(TextAsFrom(text(sql), ["*"]).alias("inner_qry"))
+                )
+            else:
+                qry = (
+                    select("*")
+                        .select_from(TextAsFrom(text(sql), ["*"]).alias("inner_qry"))
+                        .limit(limit)
+                )
             return database.compile_sqla_query(qry)
         elif LimitMethod.FORCE_LIMIT:
-            parsed_query = sql_parse.ParsedQuery(sql)
-            sql = parsed_query.get_query_with_new_limit(limit)
+            if database.backend != 'db2':
+                parsed_query = sql_parse.ParsedQuery(sql)
+                sql = parsed_query.get_query_with_new_limit(limit)
         return sql
 
     @classmethod
